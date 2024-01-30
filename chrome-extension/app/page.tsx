@@ -12,7 +12,7 @@ export default function Home() {
     // })
   }, [])
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col justify-between p-24">
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -24,36 +24,15 @@ export default function Home() {
         </div>
         <div className="chat-header">
           Obi-Wan Kenobi
-          <time className="text-xs opacity-50">12:45</time>
+          <time className="text-xs opacity-50 pl-1">12:45</time>
         </div>
 
         <div className="chat-bubble chat-bubble-primary">
           What kind of nonsense is this
         </div>
       </div>
-      <div className="chat chat-start">
-        <div className="chat-bubble chat-bubble-secondary">
-          Put me on the Council and not make me a Master!??
-        </div>
-      </div>
-      <div className="chat chat-start">
-        <div className="chat-bubble chat-bubble-accent">
-          That's never been done in the history of the Jedi. It's insulting!
-        </div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-bubble chat-bubble-info">Calm down, Anakin.</div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-bubble chat-bubble-success">
-          You have been given a great honor.
-        </div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-bubble chat-bubble-warning">
-          To be on the Council at your age.
-        </div>
-      </div>
+
+      {/* Chat ending  */}
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-10 rounded-full">
@@ -67,9 +46,9 @@ export default function Home() {
         </div>
         <div className="chat-header">
           Anakin
-          <time className="text-xs opacity-50">12:46</time>
+          <time className="text-xs opacity-50 pl-1">12:46</time>
         </div>
-        <div className="chat-bubble chat-bubble-error">
+        <div className="chat-bubble chat-bubble-accent">
           It's never happened before.
         </div>
         <div className="chat-footer opacity-50">Seen at 12:46</div>
