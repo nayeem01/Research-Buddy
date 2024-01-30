@@ -16,7 +16,8 @@ dist
 /coverage
 
 # next.js
-/.next/
+chrome-extension/.next/
+cache
 /out/
 
 # production
