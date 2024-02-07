@@ -4,5 +4,6 @@ Features:
 
 - [ ] Chrome extension
 - [ ] Chat with Group mates
-- [ ] Research Paper summarizations
+- [ ] Research Paper summarizations with LLM Models
+- [ ] Vector Embedding
 - [ ] Login and Register
