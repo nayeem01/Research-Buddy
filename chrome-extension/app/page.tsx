@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import { socketInitializer, socket } from './api/socket'
+import React, { useState } from 'react'
+import { socket } from './api/socket'
 interface Message {
   body: string
   sender: string
@@ -9,18 +9,21 @@ interface Message {
 }
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([])
   const [mymessages, setMymessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const date = new Date()
 
   const sendMessage = () => {
     if (input) {
-      socket.emit('message', {
-        body: input,
-        sender: 'me',
-        time: `${date.getHours()}:${date.getMinutes()}`,
-      })
+      socket.send(
+        JSON.stringify({
+          message: {
+            body: input,
+            sender: 'me',
+            time: `${date.getHours()}:${date.getMinutes()}`,
+          },
+        })
+      )
       setMymessages((prevMessages) => [
         ...prevMessages,
         {
@@ -32,12 +35,14 @@ export default function Home() {
       setInput('')
     }
   }
-  useEffect(() => {
-    socketInitializer()
-    socket.on('message', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message])
-    })
-  }, [])
+
+  const handleKeyboardEvent = (event: any) => {
+    if (event.key === 'Enter') sendMessage()
+  }
+  socket.onmessage = function (event) {
+    const msData = JSON.parse(event.data)
+    setMymessages((prevMessages) => [...prevMessages, msData.message])
+  }
 
   return (
     <div className="drawer-content flex flex-col ">
@@ -80,7 +85,6 @@ export default function Home() {
               <time className="text-xs opacity-50 pl-1">{message.time}</time>
             </div>
             <div className="chat-bubble chat-bubble-accent">{message.body}</div>
-            <div className="chat-footer opacity-50">Seen at 12:46</div>
           </div>
         ))}
 
@@ -92,6 +96,7 @@ export default function Home() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="input input-bordered input-accent w-full xs"
+            onKeyDown={handleKeyboardEvent}
           />
           <button
             className="btn btn-outline btn-accent ml-2"
