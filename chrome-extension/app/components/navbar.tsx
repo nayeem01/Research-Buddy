@@ -1,6 +1,8 @@
 import React from 'react'
+import { useGlobalContext } from '../Context/store'
 
 export default function Navbar() {
+  const { llmToggle, setLLM } = useGlobalContext()
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -49,6 +51,7 @@ export default function Navbar() {
                       type="checkbox"
                       className="toggle toggle-accent"
                       checked={false}
+                      // onClick={() => setLLM(!llmToggle)}
                     />
                   </label>
                 </div>

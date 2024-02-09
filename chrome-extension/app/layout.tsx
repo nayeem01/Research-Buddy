@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { GlobalContextProvider } from './Context/store'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/navbar'
@@ -19,16 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="night">
       <body className={inter.className}>
-        <Navbar />
-        <div className="drawer  lg:drawer-open">
-          <input
-            id="left-sidebar-drawer"
-            type="checkbox"
-            className="drawer-toggle"
-          />
-          {children}
-          <Sidebar />
-        </div>
+        <GlobalContextProvider>{children}</GlobalContextProvider>
       </body>
     </html>
   )
