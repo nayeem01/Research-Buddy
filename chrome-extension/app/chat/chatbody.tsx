@@ -15,15 +15,6 @@ export default function ChatBody() {
   const [input, setInput] = useState('')
   const date = new Date()
 
-  // useEffect(() => {
-  //   setUserId('2')
-  //   setData([
-  //     { firstName: 'Tim' },
-  //     { firstName: 'Kyle' },
-  //     { firstName: 'Michael' },
-  //   ])
-  // }, [])
-
   const sendMessage = () => {
     if (input) {
       socket.send(
@@ -94,6 +85,24 @@ export default function ChatBody() {
 
         {/* input */}
         <div className="flex join">
+          {input.toLowerCase().startsWith('llm') && (
+            <div className="badge badge-info gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="inline-block w-4 h-4 stroke-current"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+              LLM
+            </div>
+          )}
           <input
             type="text"
             placeholder="Send a message"
@@ -102,7 +111,6 @@ export default function ChatBody() {
             className="input input-bordered input-accent w-full xs"
             onKeyDown={handleKeyboardEvent}
           />
-
           <button
             className="btn btn-outline btn-accent ml-2"
             onClick={sendMessage}
