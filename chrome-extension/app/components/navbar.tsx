@@ -33,7 +33,29 @@ export default function Navbar() {
             <ul className="menu menu-horizontal">
               {/* Navbar menu content here */}
               <li>
-                <a>Upload PDFs</a>
+                <select className="select select-accent w-full max-w-xs mr-10">
+                  <option disabled selected>
+                    LLM Model
+                  </option>
+                  <option>Auto</option>
+                  <option>Dark mode</option>
+                  <option>Light mode</option>
+                </select>
+              </li>
+              <li>
+                <div className="form-control">
+                  <label className="cursor-pointer label">
+                    <input
+                      type="checkbox"
+                      className="toggle toggle-accent"
+                      checked={false}
+                    />
+                  </label>
+                </div>
+              </li>
+
+              <li itemType="file" className="btn btn-outline btn-accent">
+                Upload PDFs
               </li>
             </ul>
           </div>

@@ -24,14 +24,7 @@ export default function Home() {
           },
         })
       )
-      setMymessages((prevMessages) => [
-        ...prevMessages,
-        {
-          body: input,
-          sender: 'me',
-          time: `${date.getHours()}:${date.getMinutes()}`,
-        },
-      ])
+
       setInput('')
     }
   }
