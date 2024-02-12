@@ -73,8 +73,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "researchChat",
+        "USER": "postgres",
+        "PASSWORD": "pass123",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 

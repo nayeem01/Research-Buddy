@@ -11,7 +11,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "llmserver.settings")
 application = ProtocolTypeRouter(
     {
         "http": get_asgi_application(),
-        # websocket connection
         # WebSocket chat handler
         "websocket": URLRouter(websocket_urlpatterns),
     }
