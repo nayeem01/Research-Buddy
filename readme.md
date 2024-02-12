@@ -6,9 +6,10 @@ Frontend Features (Next.js):
 - [ ] Typing animation
 - [ ] UI design with daisy-UI
 
-Backend Features:
+Backend Features (Django):
 
-- [ ] Chat with Group mates
+- [x] Chat with Group mates
+- [ ] Storing messages with Postgres DB
 - [ ] Research Paper summarizations with LLM Models
-- [ ] Vector Embedding
+- [ ] Vector Embedding with OpenAI and Apache Cassandra DB
 - [ ] Login and Register API
