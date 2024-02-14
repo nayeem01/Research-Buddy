@@ -15,17 +15,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL = "/papers/"
+MEDIA_ROOT = BASE_DIR / "papers"
 
 # Application definition
 
 INSTALLED_APPS = [
     "daphne",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "chat.apps.ChatConfig",
+    "chat",
+    "llm",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = "llmserver.wsgi.application"
+WSGI_APPLICATION = "llmserver.wsgi.application"
 ASGI_APPLICATION = "llmserver.asgi.application"
 
 CHANNEL_LAYERS = {

@@ -9,6 +9,9 @@ langchain = "*"
 channels = {extras = ["daphne"], version = "*"}
 channels-redis = "*"
 psycopg2 = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 
