@@ -12,8 +12,12 @@ psycopg2 = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
+astrapy = "*"
+pypdf2 = "*"
 
 [dev-packages]
+pylint-django = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.10"

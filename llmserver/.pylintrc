@@ -1,0 +1,8 @@
+[MESSAGES CONTROL]
+disable=all
+
+[LOAD PLUGINS]
+pylint_django=true
+
+[RATINGS]
+ignored-modules = settings,migrations

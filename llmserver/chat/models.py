@@ -17,3 +17,5 @@ class Message(models.Model):
     content = models.TextField()
     llm_content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
