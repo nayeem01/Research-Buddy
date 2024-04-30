@@ -13,6 +13,9 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 astrapy = "*"
+instructorembedding = "*"
+sentence-transformers = "*"
+python-dotenv = "*"
 pypdf2 = "*"
 
 [dev-packages]

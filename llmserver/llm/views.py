@@ -1,10 +1,16 @@
 from .models import ResearchPaper
+from .embedding import get_pdf_text, get_text_chunks
 
-from rest_framework import status
+from langchain_community.embeddings import HuggingFaceInstructEmbeddings
+
+model = "hkunlp/instructor-xl"
+
+
+from rest_framework import status, generics
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import FileUploadSerializer
+from .serializers import FileUploadSerializer, ResearchPaperSerializer
 
 
 class PdfUpload(APIView):
@@ -21,17 +27,19 @@ class PdfUpload(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class getPapers(generics.ListAPIView):
+    def get(self, request, *args, **kwargs):
+        papers = ResearchPaper.objects.all()
+        serializer = ResearchPaperSerializer(papers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# os.environ.get("OPENAI_API_KEY")
 class VectorEmbedding(APIView):
     def get(self, request, *args, **kwargs):
-        try:
-            paper = ResearchPaper.objects.get(pk=1)
-        except ResearchPaper.DoesNotExist:
-            return Response(
-                {"error": "Paper not found"}, status=status.HTTP_404_NOT_FOUND
-            )
+        papers = ResearchPaper.objects.all()
 
-        pdf_path = paper.file.path
+        extracted_text = get_pdf_text(papers)
+        text_chunks = get_text_chunks(extracted_text)
 
-        print(pdf_path)
-
-        return Response("pdf_bytes", status=status.HTTP_200_OK)
+        return Response(text_chunks, status=status.HTTP_200_OK)

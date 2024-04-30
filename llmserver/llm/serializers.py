@@ -9,3 +9,13 @@ class FileUploadSerializer(serializers.ModelSerializer):
             "file",
             "uploaded_on",
         )
+
+
+class ResearchPaperSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResearchPaper
+        fields = (
+            "id",
+            "file",
+            "uploaded_on",
+        )
