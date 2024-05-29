@@ -1,10 +1,13 @@
+# import os
+
 from .models import ResearchPaper
-from .embedding import get_pdf_text, get_text_chunks
-
-from langchain_community.embeddings import HuggingFaceInstructEmbeddings
-
-model = "hkunlp/instructor-xl"
-
+from .embedding import (
+    get_pdf_text,
+    get_text_chunks,
+    create_embedding,
+    vector_store,
+    search_query,
+)
 
 from rest_framework import status, generics
 from rest_framework.parsers import MultiPartParser
@@ -36,10 +39,21 @@ class getPapers(generics.ListAPIView):
 
 # os.environ.get("OPENAI_API_KEY")
 class VectorEmbedding(APIView):
-    def get(self, request, *args, **kwargs):
+    index_name = "research-papers-index"
+    namespace = "ns1"
+
+    def post(self, request, *args, **kwargs):
         papers = ResearchPaper.objects.all()
 
         extracted_text = get_pdf_text(papers)
         text_chunks = get_text_chunks(extracted_text)
 
-        return Response(text_chunks, status=status.HTTP_200_OK)
+        embeddings = create_embedding(text_chunks)
+
+        res = vector_store(embeddings, self.index_name, self.namespace)
+
+        return Response(res, status=status.HTTP_200_OK)
+
+    def get(self, request, *args, **kwargs):
+        search_query("name of the university", self.index_name, self.namespace)
+        return Response({"status": "success"}, status=status.HTTP_200_OK)

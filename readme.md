@@ -10,6 +10,6 @@ Backend Features (Django):
 
 - [x] Chat with Group mates
 - [ ] Storing messages with Postgres DB
+- [x] Vector Embeddings stored in Pinecone
 - [ ] Research Paper summarizations with LLM Models
-- [ ] Vector Embedding with OpenAI and Apache Cassandra DB
 - [ ] Login and Register API
